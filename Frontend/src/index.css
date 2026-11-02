@@ -1,0 +1,79 @@
+
+@import "tailwindcss";
+
+/* =================================
+   1. PORTFOLIO DESIGN TOKENS
+================================= */
+
+@theme {
+  --color-background: #0A0A0A;
+  --color-surface: #121212;
+  --color-border: #1F1F1F;
+  --color-primary: #D91E26;
+  --color-foreground: #FFFFFF;
+  --color-muted: #9A9A9A;
+
+  --font-display: "Arial", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* =================================
+   2. GLOBAL RESET
+================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* =================================
+   3. GLOBAL SCROLLBAR
+================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+@import "./styles/animations.css";
