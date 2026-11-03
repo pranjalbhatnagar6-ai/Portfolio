@@ -1,11 +1,14 @@
+
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Connect from "./pages/Connect";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/connect" element={<Connect />} />
     </Routes>
   );
 }

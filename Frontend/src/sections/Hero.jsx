@@ -1,5 +1,6 @@
 
 import { FiArrowUpRight, FiDownload, FiGithub, FiLinkedin } from "react-icons/fi";
+import { SiGmail } from "react-icons/si";
 
 function Hero() {
   return (
@@ -92,6 +93,16 @@ function Hero() {
             >
               <FiGithub />
             </a>
+
+            <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=pranjalbhatnagar6@gmail.com&su=Business%20Inquiry"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Gmail"
+            className="text-xl text-muted transition-colors hover:text-primary"
+          >
+            <SiGmail />
+          </a>
 
             <a
               href="https://www.linkedin.com/"

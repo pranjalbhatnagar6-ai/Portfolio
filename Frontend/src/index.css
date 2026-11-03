@@ -1,10 +1,8 @@
 
 @import "tailwindcss";
+@import "./styles/animations.css";
 
-/* =================================
-   1. PORTFOLIO DESIGN TOKENS
-================================= */
-
+/* Design System */
 @theme {
   --color-background: #0A0A0A;
   --color-surface: #121212;
@@ -17,52 +15,46 @@
   --font-body: "Inter", sans-serif;
 }
 
-/* =================================
-   2. GLOBAL RESET
-================================= */
+/* Global Base Styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    font: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: white;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px;
-}
-
-body {
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-body);
-  overflow-x: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
-  font: inherit;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-::selection {
-  background: var(--color-primary);
-  color: white;
-}
-
-/* =================================
-   3. GLOBAL SCROLLBAR
-================================= */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -75,5 +67,3 @@ img {
   background: var(--color-primary);
   border-radius: 10px;
 }
-
-@import "./styles/animations.css";

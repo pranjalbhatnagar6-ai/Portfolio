@@ -9,6 +9,8 @@ const navLinks = [
   { label: "Projects", href: "#projects" },
   { label: "Journey", href: "#journey" },
   { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "GitHub", href: "#github" },
 ];
 
 function Navbar() {
@@ -42,7 +44,7 @@ function Navbar() {
           ))}
         </div>
 
-        {/* Contact CTA */}
+        {/* Desktop Contact CTA */}
         <a
           href="#contact"
           className="hidden items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-red-700 lg:flex"
@@ -80,7 +82,7 @@ function Navbar() {
             <a
               href="#contact"
               onClick={closeMenu}
-              className="flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-white"
+              className="flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-bold text-white transition-all hover:bg-red-700"
             >
               Let's Connect
               <FiArrowUpRight />
