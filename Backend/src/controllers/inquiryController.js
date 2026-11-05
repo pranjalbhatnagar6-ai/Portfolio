@@ -1,4 +1,4 @@
-const Inquiry = require("../models/Inquiry");
+const Inquiry = require("../models/inquiry");
 const sendInquiryNotification = require("../services/emailService");
 
 const createInquiry = async (req, res) => {
