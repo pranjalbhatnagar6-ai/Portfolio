@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -22,6 +23,8 @@ function Connect() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,18 +33,42 @@ function Connect() {
       ...prev,
       [name]: value,
     }));
+
+    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Backend integration will be added in the next phase.
-    setSubmitted(true);
+    if (loading) return;
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+      await axios.post(`${API_URL}/api/inquiries`, formData);
+
+      if (response.data.success) {
+        setSubmitted(true);
+      } else {
+        setError("Unable to submit your inquiry. Please try again.");
+      }
+    } catch (err) {
+      console.error("Inquiry Submission Error:", err);
+
+      setError(
+        err.response?.data?.message ||
+          "Something went wrong. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <main className="min-h-screen bg-background px-5 py-8 md:px-10 md:py-12">
-
       <div className="mx-auto max-w-7xl">
 
         {/* Back to Home */}
@@ -76,7 +103,6 @@ function Connect() {
 
           {/* Left Information Panel */}
           <aside className="flex flex-col justify-between rounded-2xl border border-border bg-surface p-7 md:p-10">
-
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
                 Get In Touch
@@ -161,7 +187,6 @@ function Connect() {
                 Computer Science Engineer • Full-Stack Developer
               </p>
             </div>
-
           </aside>
 
           {/* Inquiry Form */}
@@ -186,20 +211,30 @@ function Connect() {
                 <FaPaperPlane className="mx-auto text-4xl text-primary" />
 
                 <h3 className="mt-5 text-2xl font-bold">
-                  Form Preview Complete!
+                  Inquiry Submitted!
                 </h3>
 
                 <p className="mt-3 text-sm leading-7 text-muted">
-                  Your form UI is working. Actual inquiry submission,
-                  database storage and email notifications will be
-                  activated after backend integration.
+                  Thank you for reaching out! Your inquiry has been
+                  successfully saved. I'll get back to you soon.
                 </p>
 
                 <button
-                  onClick={() => setSubmitted(false)}
+                  onClick={() => {
+                    setSubmitted(false);
+                    setFormData({
+                      name: "",
+                      email: "",
+                      phone: "",
+                      purpose: "",
+                      budget: "",
+                      timeline: "",
+                      message: "",
+                    });
+                  }}
                   className="mt-7 font-bold text-primary hover:text-white"
                 >
-                  Edit Details
+                  Submit Another Inquiry
                 </button>
               </div>
             ) : (
@@ -349,18 +384,28 @@ function Connect() {
                   />
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <div
+                    role="alert"
+                    className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400"
+                  >
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="flex w-full items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 font-bold text-white transition-all hover:-translate-y-1 hover:bg-red-700"
+                  disabled={loading}
+                  className="flex w-full items-center justify-center gap-3 rounded-lg bg-primary px-6 py-4 font-bold text-white transition-all hover:-translate-y-1 hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
                 >
-                  Submit Inquiry
-                  <FaArrowRight />
+                  {loading ? "Submitting..." : "Submit Inquiry"}
+                  {!loading && <FaArrowRight />}
                 </button>
 
                 <p className="text-center text-xs leading-5 text-muted">
-                  Your information will be handled securely once the
-                  backend submission system is connected.
+                  Your inquiry will be securely stored in our database.
                 </p>
 
               </form>
