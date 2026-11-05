@@ -48,9 +48,14 @@ function Connect() {
     try {
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-      await axios.post(`${API_URL}/api/inquiries`, formData);
 
-      if (response.data.success) {
+      
+      const response = await axios.post(
+        `${API_URL}/api/inquiries`,
+        formData
+      );
+
+if (response.data.success){
         setSubmitted(true);
       } else {
         setError("Unable to submit your inquiry. Please try again.");
