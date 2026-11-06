@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="31" fill="#0A0A0A"/>
+  <circle cx="32" cy="32" r="32" fill="#0A0A0A"/>
 
   <text
     x="31"
@@ -8,7 +8,7 @@
     font-family="Arial, sans-serif"
     font-size="29"
     font-weight="900"
-    letter-spacing="-2.0"
+    letter-spacing="-2"
     fill="#FFFFFF"
   >PB</text>
 
